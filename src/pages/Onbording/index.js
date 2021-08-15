@@ -8,10 +8,11 @@ import {
   Text,
   ImageBackground,
 } from 'react-native';
-
+import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 
 export default function Onbording() {
+  const navigation = useNavigation();
   const background = require('../../assets/images/onboarding.png');
   const iconCarrot = require('../../assets/images/carrot.png');
   return (
@@ -32,7 +33,10 @@ export default function Onbording() {
             </Text>
           </View>
 
-          <Button name="Get Started" />
+          <Button
+            name="Get Started"
+            handlePress={() => navigation.navigate('Login')}
+          />
         </View>
       </ImageBackground>
     </SafeAreaView>

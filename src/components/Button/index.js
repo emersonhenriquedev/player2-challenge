@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-export default function Button({name}) {
+export default function Button({name, handlePress}) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
@@ -16,12 +16,14 @@ const styles = StyleSheet.create({
     borderRadius: 19,
     paddingHorizontal: '35%',
     paddingVertical: '6%',
+    alignSelf: 'center',
   },
   text: {
     color: '#FFF9FF',
     textAlign: 'center',
     fontWeight: '600',
-    fontFamily: 'Gilroy-Light',
+    // fontFamily: 'Gilroy-Light',
+    fontFamily: 'Gilroy-ExtraBold',
     fontSize: 16,
   },
 });

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Onbording from './pages/Onbording';
-
+import Login from './pages/Login';
 const Stack = createNativeStackNavigator();
 
 function Routes() {
@@ -13,6 +13,11 @@ function Routes() {
         <Stack.Screen
           name="Welcome"
           component={Onbording}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
