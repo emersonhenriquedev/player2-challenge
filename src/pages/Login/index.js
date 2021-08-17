@@ -11,9 +11,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 
 export default function Login() {
+  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -49,7 +51,10 @@ export default function Login() {
               ]}>
               Forgot Password?
             </Text>
-            <Button name="Log in" />
+            <Button
+              name="Log in"
+              handlePress={() => navigation.navigate('Home')}
+            />
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text
                 style={[
@@ -58,7 +63,7 @@ export default function Login() {
                 ]}>
                 Don't have an account?
               </Text>
-              <Text style={{color:'#53B175', marginLeft: 4}}>Signup</Text>
+              <Text style={{color: '#53B175', marginLeft: 4}}>Signup</Text>
             </View>
           </View>
         </View>
