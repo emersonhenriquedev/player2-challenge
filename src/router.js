@@ -6,6 +6,8 @@ import Onbording from './pages/Onbording';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
+
 const Stack = createNativeStackNavigator();
 
 function Routes() {
@@ -31,6 +33,11 @@ function Routes() {
           name="ProductDetail"
           component={ProductDetail}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{title: 'My Cart'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

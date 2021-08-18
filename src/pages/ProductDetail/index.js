@@ -146,7 +146,10 @@ export default function ProductDetail() {
           </CollapseBody>
         </Collapse>
         <View style={{marginTop: '5%', marginBottom: '15%'}}>
-          <Button name="Add To Basket" />
+          <Button
+            name="Add To Basket"
+            handlePress={() => navigation.navigate('Cart')}
+          />
         </View>
       </ScrollView>
     </View>
