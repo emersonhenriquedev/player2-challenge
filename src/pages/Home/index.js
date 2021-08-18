@@ -7,6 +7,7 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import SearchInput from '../../components/SearchInput';
 import Banner from '../../components/Banner';
@@ -39,6 +40,7 @@ const DATA = [
 ];
 
 export default function Home() {
+  const navigation = useNavigation();
   const renderItem = ({item, index}) => (
     <View style={{marginHorizontal: index === 0 ? 0 : 15}}>
       <Card
@@ -46,6 +48,7 @@ export default function Home() {
         title={item.title}
         description={item.description}
         price={item.price}
+        handlePress={() => navigation.navigate('ProductDetail')}
       />
     </View>
   );

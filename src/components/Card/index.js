@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import AddButton from '../AddButton';
 
-export default function Card({image, title, description, price}) {
+export default function Card({image, title, description, price, handlePress}) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -14,7 +14,7 @@ export default function Card({image, title, description, price}) {
       </View>
       <View style={styles.footer}>
         <Text style={styles.price}>${price}</Text>
-        <AddButton />
+        <AddButton handlePress={handlePress} />
       </View>
     </View>
   );
@@ -33,13 +33,11 @@ const styles = StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
     marginBottom: '8%',
-    // backgroundColor: 'green',
     height: 90,
   },
   image: {},
   body: {
     height: 80,
-    // backgroundColor: 'green',
   },
   title: {
     color: '#181725',
