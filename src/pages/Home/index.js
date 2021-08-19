@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 import SearchInput from '../../components/SearchInput';
 import Banner from '../../components/Banner';
@@ -41,6 +42,10 @@ const DATA = [
 
 export default function Home() {
   const navigation = useNavigation();
+  const token = useSelector(state => state.user.token);
+
+  console.log(token);
+
   const renderItem = ({item, index}) => (
     <View style={{marginHorizontal: index === 0 ? 0 : 15}}>
       <Card

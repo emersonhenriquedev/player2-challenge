@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useSelector} from 'react-redux';
 
 import Onbording from './pages/Onbording';
 import Login from './pages/Login';
@@ -48,44 +49,42 @@ function TabRoutes() {
 }
 
 function Routes() {
+  const userToken = useSelector(state => state.user.token);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Welcome"
-          component={Onbording}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Home"
-          component={TabRoutes}
-          options={{headerShown: false}}
-        />
-        {/* <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{headerShown: false}}
-        /> */}
-        <Stack.Screen
-          name="ProductDetail"
-          component={ProductDetail}
-          options={{headerShown: false}}
-        />
-        {/* <Stack.Screen
-          name="Cart"
-          component={Cart}
-          options={{title: 'My Cart'}}
-        /> */}
-        <Stack.Screen
-          name="OrderAccepted"
-          component={OrderAccepted}
-          options={{headerShown: false}}
-        />
+        {userToken == null ? (
+          <>
+            <Stack.Screen
+              name="Welcome"
+              component={Onbording}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{headerShown: false}}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={TabRoutes}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ProductDetail"
+              component={ProductDetail}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="OrderAccepted"
+              component={OrderAccepted}
+              options={{headerShown: false}}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

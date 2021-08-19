@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -12,10 +12,34 @@ import {
   Keyboard,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {login} from '../../store/slices/userSlice';
+
 import Button from '../../components/Button';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    if (password.length !== 0 && email.length !== 0) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [password, email]);
+
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    if (isValid) {
+      dispatch(login());
+      navigation.navigate('Home');
+    }
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -36,13 +60,15 @@ export default function Login() {
             <TextInput
               style={styles.input}
               keyboardType="email-address"
-              defaultValue="imshuvo97@gmail.com"
+              onChange={setEmail}
+              // defaultValue="imshuvo97@gmail.com"
             />
             <Text style={[styles.label, {marginTop: '8%'}]}>Password</Text>
             <TextInput
               style={[styles.input, {letterSpacing: 8}]}
               secureTextEntry
-              defaultValue="12345678"
+              onChange={setPassword}
+              // defaultValue="12345678"
             />
             <Text
               style={[
@@ -53,7 +79,9 @@ export default function Login() {
             </Text>
             <Button
               name="Log in"
-              handlePress={() => navigation.navigate('Home')}
+              light={!isValid ? true : false}
+              // handlePress={() => navigation.navigate('Home')}
+              handlePress={handleLogin}
             />
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text

@@ -1,10 +1,15 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 import Routes from './src/router';
+import {Provider} from 'react-redux';
+
+import Store from './src/store/';
 
 const App = () => {
   return (
-    <Routes />
+    <Provider store={Store}>
+      <Routes />
+    </Provider>
   );
 };
 
