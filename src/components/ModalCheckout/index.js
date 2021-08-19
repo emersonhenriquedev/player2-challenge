@@ -7,11 +7,18 @@ import {
   TouchableWithoutFeedback,
   Image,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import Button from '../Button';
 
 export default function ModalCheckout({onClose}) {
+  const navigation = useNavigation();
+  const startOrder = () => {
+    onClose();
+    navigation.navigate('OrderAccepted');
+  };
   return (
     <View style={styles.modalContainer}>
       <TouchableWithoutFeedback onPress={onClose}>
@@ -60,7 +67,7 @@ export default function ModalCheckout({onClose}) {
           }}>
           By placing an order you agree to our Terms And Conditions
         </Text>
-        <Button name="Place Order" />
+        <Button name="Place Order" handlePress={startOrder} />
       </View>
     </View>
   );
