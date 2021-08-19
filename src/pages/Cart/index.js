@@ -1,7 +1,15 @@
-import React from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 
 import CartItem from '../../components/CartItem';
+import ModalCheckout from '../../components/ModalCheckout';
 import Separator from '../../components/Separator';
 
 const DATA = [
@@ -43,6 +51,7 @@ const DATA = [
 ];
 
 export default function Cart() {
+  const [modalVisibile, setModalVisible] = useState(false);
   const renderItem = ({item}) => (
     <CartItem
       title={item.title}
@@ -59,10 +68,16 @@ export default function Cart() {
         ItemSeparatorComponent={Separator}
         showsVerticalScrollIndicator={false}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setModalVisible(true)}>
         <Text style={styles.textButton}>Go to Checkout</Text>
         <Text style={styles.total}>$12.96</Text>
       </TouchableOpacity>
+
+      <Modal visible={modalVisibile} transparent animationType="fade">
+        <ModalCheckout onClose={() => setModalVisible(false)} />
+      </Modal>
     </View>
   );
 }
@@ -81,7 +96,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 29,
     paddingVertical: '6%',
     alignSelf: 'center',
-
   },
   textButton: {
     flex: 3,
