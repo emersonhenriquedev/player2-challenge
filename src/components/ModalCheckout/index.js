@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(226, 226, 226, 0.7)',
+    paddingBottom: 30,
   },
   title: {
     fontSize: 24,
