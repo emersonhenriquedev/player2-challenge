@@ -11,10 +11,13 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {login, logout} from '../../store/slices/userSlice';
 
 import Button from '../../components/Button';
 
 export default function Account() {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -95,7 +98,7 @@ export default function Account() {
         </TouchableOpacity>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button name="Logout" light />
+        <Button name="Logout" light handlePress={() => dispatch(logout())} />
       </View>
     </View>
   );

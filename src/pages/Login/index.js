@@ -36,7 +36,6 @@ export default function Login() {
   const handleLogin = () => {
     if (isValid) {
       dispatch(login());
-      navigation.navigate('Home');
     }
   };
 
