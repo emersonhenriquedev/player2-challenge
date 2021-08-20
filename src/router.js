@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import OrderAccepted from './pages/OrderAccepted';
+import Account from './pages/Account';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,6 +34,8 @@ function TabRoutes() {
           } else if (route.name === 'Cart') {
             color = focused ? '#53B175' : '#030303';
             return <Ionicons name="cart-outline" color={color} size={24} />;
+          } else if (route.name === 'Account') {
+            return <Ionicons name="person-outline" color={color} size={24} />;
           }
         },
         tabBarActiveTintColor: '#53B175',
@@ -44,6 +47,11 @@ function TabRoutes() {
       })}>
       <Tab.Screen name="Shop" component={Home} options={{headerShown: false}} />
       <Tab.Screen name="Cart" component={Cart} options={{headerShown: false}} />
+      <Tab.Screen
+        name="Account"
+        component={Account}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 }
